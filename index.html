@@ -71,24 +71,24 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.03);
             margin-bottom: 25px;
         }
-.app-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 24px; /* انحناء زوايا الصورة */
-    overflow: hidden;   /* لقص حواف الصورة وفق الانحناء */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* ظل ناعم تحت الأيقونة */
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-/* إضافة تنسيق للصورة داخل الأيقونة */
-.app-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* تضمن ملء الصورة للمربع بشكل ممتاز بدون تشويه */
-}
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .app-details {
             flex: 1;
@@ -156,6 +156,53 @@
         .download-btn:hover {
             background-color: #00796B;
             transform: translateY(-2px);
+        }
+
+        /* قسم ما الجديد / ملاحظات التحديث Dynamically Loaded */
+        .release-notes-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 22px 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #E2E8F0;
+            border-right: 5px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .release-notes-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .release-notes-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .release-notes-list li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .release-notes-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 2px;
+            color: var(--primary-color);
+            font-size: 0.85rem;
         }
 
         /* قسم الميزات والمعلومات */
@@ -264,10 +311,9 @@
         
         <!-- البطاقة الرئيسية للتطبيق -->
         <div class="app-header-card">
-      <!-- استبدل قسم الأيقونة القديم بهذا الكود -->
-<div class="app-icon">
-    <img src="logo.png" alt="شعار برنامج دفتر حساباتي">
-</div>
+            <div class="app-icon">
+                <img src="logo.png" alt="شعار برنامج دفتر حساباتي">
+            </div>
 
             <div class="app-details">
                 <h1 class="app-title">دفتر حساباتي</h1>
@@ -279,7 +325,7 @@
                         <div class="stat-label">التقييم</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">90 MB</div>
+                        <div class="stat-value" id="stat-size">90 MB</div>
                         <div class="stat-label">الحجم</div>
                     </div>
                     <div class="stat-item">
@@ -288,12 +334,23 @@
                     </div>
                 </div>
 
-                <!-- رابط تحميل ملف الـ APK (قم بتغيير app-release.apk برابط ملفك) -->
-                <a href="https://github.com/chamcashmaher-hue/Accounts-book-updates/releases/download/V1.1.0/daftar-hisabati-1.1.0-universal.apk" class="download-btn" download>
+                <!-- رابط تحميل ملف الـ APK (يحدث تلقائياً) -->
+                <a href="https://github.com/chamcashmaher-hue/Accounts-book-updates/releases/download/V1.1.0/daftar-hisabati-1.1.0-universal.apk" id="download-btn" class="download-btn" download>
                     <i class="fa-solid fa-download"></i>
-                    تحميل بصيغة APK (90 MB)
+                    <span id="download-text">تحميل بصيغة APK</span>
                 </a>
             </div>
+        </div>
+
+        <!-- قسم ما الجديد في التحديث الحالي (يتغير تلقائياً من ملف latest.json) -->
+        <div class="release-notes-card">
+            <div class="release-notes-title">
+                <i class="fa-solid fa-bullhorn" style="color: var(--primary-color);"></i>
+                ما الجديد في هذا الإصدار (<span id="release-version">1.1.0</span>)
+            </div>
+            <ul class="release-notes-list" id="release-notes-list">
+                <li>جاري تحميل ملاحظات التحديث...</li>
+            </ul>
         </div>
 
         <!-- قسم مميزات التطبيق -->
@@ -335,7 +392,6 @@
         </h2>
 
         <div class="screenshots-scroll">
-            <!-- ضع مسار صور شاشة تطبيقك هنا -->
             <div class="screenshot-item">
                 <img src="1.jpg" alt="الشاشة الرئيسية">
             </div>
@@ -358,13 +414,13 @@
         
         <div class="feature-card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
             <div>
-                <strong>الإصدار:</strong> 1.0.0
+                <strong>الإصدار:</strong> <span id="info-version">1.1.0</span>
             </div>
             <div>
                 <strong>التوافق:</strong> Android 5.0 وما فوق
             </div>
             <div>
-                <strong>حجم الملف:</strong> 90.0 ميغابايت
+                <strong>حجم الملف:</strong> <span id="info-size">90.0 ميغابايت</span>
             </div>
             <div>
                 <strong>الفئة:</strong> أدوات ومعاملات مالية
@@ -377,5 +433,53 @@
 
     </div>
 
+    <!-- كود الجلب التلقائي للبيانات من latest.json -->
+    <script>
+        fetch('latest.json')
+            .then(response => {
+                if (!response.ok) throw new Error('File not found');
+                return response.json();
+            })
+            .then(data => {
+                // 1. تحديث رقم الإصدار
+                if (data.version) {
+                    document.getElementById('release-version').textContent = data.version;
+                    document.getElementById('info-version').textContent = data.version;
+                }
+
+                // 2. تحديث الحجم
+                if (data.size) {
+                    document.getElementById('stat-size').textContent = data.size;
+                    document.getElementById('info-size').textContent = data.size;
+                }
+
+                // 3. تحديث رابط التحميل
+                if (data.download_url) {
+                    document.getElementById('download-btn').href = data.download_url;
+                }
+
+                // 4. عرض ملاحظات التحديث
+                const notesList = document.getElementById('release-notes-list');
+                if (data.notes && data.notes.length > 0) {
+                    notesList.innerHTML = '';
+                    data.notes.forEach(note => {
+                        const li = document.createElement('li');
+                        li.textContent = note;
+                        notesList.appendChild(li);
+                    });
+                } else {
+                    notesList.innerHTML = '<li>تحسينات عامة على أداء التطبيق واستقراره.</li>';
+                }
+            })
+            .catch(error => {
+                console.log('سيتم استخدام البيانات الافتراضية لحين رفع ملف latest.json', error);
+                document.getElementById('release-notes-list').innerHTML = `
+                    <li>تفعيل 30 يوماً مجانية تجريبية لفترة سنة، 6 أشهر، 3 أشهر، أو مدى الحياة (بدون إنترنت).</li>
+                    <li>إمكانية طلب التفعيل ونسخ/لصق رمز التفعيل عبر الواتساب من صفحة التفعيل.</li>
+                    <li>تبقى كافة بياناتك متاحة للعرض والنسخ الاحتياطي والمشاركة حتى بعد انتهاء الاشتراك.</li>
+                `;
+            });
+    </script>
 </body>
 </html>
+ك
