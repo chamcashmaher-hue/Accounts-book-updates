@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق دفتر حساباتي - تحميل مباشر APK</title>
+    <!-- خط تجوال من خطوط قوقل -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #00897B;
+            --primary-light: #70E4C8;
+            --bg-color: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text-color: #1E293B;
+            --text-muted: #64748B;
+            --danger-color: #EF4444;
+            --success-color: #10B981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* كارت التطبيق الرئيسي */
+        .app-header-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            margin-bottom: 25px;
+        }
+.app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px; /* انحناء زوايا الصورة */
+    overflow: hidden;   /* لقص حواف الصورة وفق الانحناء */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* ظل ناعم تحت الأيقونة */
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* إضافة تنسيق للصورة داخل الأيقونة */
+.app-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* تضمن ملء الصورة للمربع بشكل ممتاز بدون تشويه */
+}
+
+        .app-details {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .app-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .app-developer {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .app-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            border-top: 1px solid #E2E8F0;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 10px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-item:not(:last-child) {
+            border-left: 1px solid #E2E8F0;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .download-btn:hover {
+            background-color: #00796B;
+            transform: translateY(-2px);
+        }
+
+        /* قسم الميزات والمعلومات */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #F1F5F9;
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-color);
+            color: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* قسم المعاينة/الصور */
+        .screenshots-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            scrollbar-width: thin;
+        }
+
+        .screenshot-item {
+            min-width: 200px;
+            height: 400px;
+            background-color: #E2E8F0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid #E2E8F0;
+            flex-shrink: 0;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .app-header-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .app-stats {
+                flex-direction: row;
+            }
+            .download-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <i class="fa-solid fa-wallet"></i>
+            <span>متجر التطبيقات</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- البطاقة الرئيسية للتطبيق -->
+        <div class="app-header-card">
+      <!-- استبدل قسم الأيقونة القديم بهذا الكود -->
+<div class="app-icon">
+    <img src="logo.png" alt="شعار برنامج دفتر حساباتي">
+</div>
+
+            <div class="app-details">
+                <h1 class="app-title">دفتر حساباتي</h1>
+                <div class="app-developer">إدارة الديون والحسابات الماليّة</div>
+                
+                <div class="app-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">4.8 <i class="fa-solid fa-star" style="color: #F59E0B; font-size: 0.8rem;"></i></div>
+                        <div class="stat-label">التقييم</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">90 MB</div>
+                        <div class="stat-label">الحجم</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">+10K</div>
+                        <div class="stat-label">التحميلات</div>
+                    </div>
+                </div>
+
+                <!-- رابط تحميل ملف الـ APK (قم بتغيير app-release.apk برابط ملفك) -->
+                <a href="app-release.apk" class="download-btn" download>
+                    <i class="fa-solid fa-download"></i>
+                    تحميل بصيغة APK (90 MB)
+                </a>
+            </div>
+        </div>
+
+        <!-- قسم مميزات التطبيق -->
+        <h2 class="section-title">
+            <i class="fa-solid fa-star" style="color: var(--primary-color);"></i>
+            مميزات التطبيق
+        </h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
+                <div class="feature-title">متابعة دقيقة للديون</div>
+                <div class="feature-desc">تسجيل الديون والدفعات اليومية للزبائن بحسابات تراكمية تلقائية وتنبيهات مستمرة.</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                <div class="feature-title">تقارير PDF احترافية</div>
+                <div class="feature-desc">تصدير كشوف الحسابات وتقارير الفترات المالية بصيغة PDF بضغطة زر واحدة.</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="feature-title">ربط مباشر مع الواتساب</div>
+                <div class="feature-desc">مشاركة كشوفات الحسابات وإرسال التذكيرات للزبائن مباشرة عبر الواتساب.</div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-moon"></i></div>
+                <div class="feature-title">دعم الوضع الليلي واللغات</div>
+                <div class="feature-desc">واجهة سهلة الاستخدام تدعم اللغة العربية والإنجليزية مع إمكانية التبديل للوضع الداكن.</div>
+            </div>
+        </div>
+
+        <!-- قسم صور الشاشة -->
+        <h2 class="section-title">
+            <i class="fa-solid fa-images" style="color: var(--primary-color);"></i>
+            معاينة الشاشات
+        </h2>
+
+        <div class="screenshots-scroll">
+            <!-- ضع مسار صور شاشة تطبيقك هنا -->
+            <div class="screenshot-item">
+                <img src="1.jpg" alt="الشاشة الرئيسية">
+            </div>
+            <div class="screenshot-item">
+                <img src="2.jpg" alt="سجل الحساب">
+            </div>
+            <div class="screenshot-item">
+                <img src="3.jpg" alt="التقارير المالية">
+            </div>
+            <div class="screenshot-item">
+                <img src="4.jpg" alt="الإعدادات">
+            </div>
+        </div>
+
+        <!-- معلومات إضافية -->
+        <h2 class="section-title">
+            <i class="fa-solid fa-circle-info" style="color: var(--primary-color);"></i>
+            معلومات إضافية
+        </h2>
+        
+        <div class="feature-card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div>
+                <strong>الإصدار:</strong> 1.0.0
+            </div>
+            <div>
+                <strong>التوافق:</strong> Android 5.0 وما فوق
+            </div>
+            <div>
+                <strong>حجم الملف:</strong> 90.0 ميغابايت
+            </div>
+            <div>
+                <strong>الفئة:</strong> أدوات ومعاملات مالية
+            </div>
+        </div>
+
+        <footer>
+            <p>جميع الحقوق محفوظة © 2026 - برنامج دفتر حساباتي</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
